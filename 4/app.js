@@ -19,3 +19,4 @@ function displayResult(sum) {
     document.getElementById('sum-from-array').innerHTML = sum;
 }
 displayResult(sum);
+ 
