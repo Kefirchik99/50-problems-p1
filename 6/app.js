@@ -33,4 +33,4 @@ function resetResult() {
     }
 
 }
-resetResult();
+resetResult()
