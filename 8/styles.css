@@ -1,0 +1,15 @@
+#initial_number {
+    width: 250px;
+}
+#text {
+    text-decoration: underline;
+    text-decoration-style:solid;
+    font-style: italic;
+    font-size: larger;
+}
+#t_or_f {
+    font-style: italic;
+    font-size: medium;
+    font-size: x-large;
+    
+}
