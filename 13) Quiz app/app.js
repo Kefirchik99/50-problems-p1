@@ -1,3 +1,6 @@
+var currentQuestionIndex = 0;
+var score = 0;
+
 // Quiz Questions
 const quizQuestions = [
     {
@@ -26,10 +29,53 @@ const quizQuestions = [
         correctAnswer: "Green"
     }
 ]
-// Quiz Start
-var startButton = document.createElement("button")
-startButton.textContent = "Start Quiz"
-startButton.addEventListener("click", function(){
-    startQuiz()
-})
-document.body.appendChild(startButton)
+
+function startQuiz() {
+    // Hide the start button
+    document.getElementById("start-quiz").style.display = "none";
+    
+    // Show the quiz container
+    var quizContainer = document.getElementById("quiz-container");
+    quizContainer.style.display = "block";
+  
+    // Assuming we're starting with the first question
+    var currentQuestionIndex = 0;
+    var questionObj = quizQuestions[currentQuestionIndex];
+  
+    // Clear previous question
+    quizContainer.innerHTML = "";
+  
+    // Create question element
+    var questionElement = document.createElement("h2");
+    questionElement.textContent = questionObj.question;
+  
+    // Append question to the quiz container
+    quizContainer.appendChild(questionElement);
+  
+    // Create and append answers
+    questionObj.answers.forEach(function(answer, index) {
+      var answerButton = document.createElement("button");
+      answerButton.textContent = answer;
+
+      answerButton.addEventListener("click", function() {
+        if (answer === quizQuestions[currentQuestionIndex].correctAnswer) {
+            console.log("Correct!");
+        } else {
+        console.log("Wrong answer!");
+        }
+        console.log("Answer clicked:", answer);
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizQuestions.length) {
+            // Call a function to update the quiz with the next question
+            updateQuiz(currentQuestionIndex);
+          } else {
+            // No more questions, end the quiz and show results
+            endQuiz();
+          }
+      });
+      quizContainer.appendChild(answerButton);
+    });
+  }
+
+  
+  
