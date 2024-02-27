@@ -1,0 +1,40 @@
+body {
+    margin: 30px;
+    padding: 3px;
+    background-color:blanchedalmond
+}
+
+#questions {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-style: italic;
+  font-weight: lighter;
+  
+}
+ 
+
+#answers {
+  border-radius: 4px;
+  background-color: #dcf88d;
+  margin: 10px;
+  
+}
+#answers:hover {
+    background-color: rgb(154, 164, 248);
+}
+
+#restart-button {
+    border-radius: 4px;
+    background-color: #eb38d3;
+}
+#restart-button:hover {
+    background-color: #dcf88d;
+}
+
+#start-quiz {
+    border-radius: 4px;
+    background-color: #7ff761;
+}
+
+#start-quiz:hover {
+    background-color: #dcf88d;
+}
