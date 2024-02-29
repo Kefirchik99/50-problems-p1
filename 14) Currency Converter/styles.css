@@ -1,0 +1,23 @@
+body {
+    display: flexbox;
+    text-align: center;
+    
+}
+main {
+    max-width: 40%;
+    margin: auto
+};
+
+#input_amount {
+    border-radius: 25%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    padding: 25%;
+}
+
+#calculate_button {
+    border-radius: 10%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    padding: 1%;
+}
