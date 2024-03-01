@@ -6,7 +6,7 @@ function calculatePrice() {
         document.getElementById("result-container").innerHTML = "";
     } else {
         var result = price * exchangeRate;
-        document.getElementById("result-container").innerHTML = "The amount BTC in EUR is:" + result.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+        document.getElementById("result-container").innerHTML = "The amount of BTC is:" + result.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
     }
 }
 
