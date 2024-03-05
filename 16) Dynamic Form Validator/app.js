@@ -8,9 +8,9 @@ document.getElementById("forms").appendChild(userName)
 
 const userNameInput = document.getElementById("userName")
 userNameInput.addEventListener("input", debounce(function (event) {
-    const userNameValue = event.target.value
-    const regex = /^[A-Z][a-z]{0,14}$/
-    validateInput(userNameValue, regex, "Invalid username. Ensure it starts with a capital letter, contains no numbers, and is not more than 15 letters long.")
+  const userNameValue = event.target.value
+  const regex = /^[A-Z][a-z]{0,14}$/
+  validateInput(event.target, regex, "Invalid username. Ensure it starts with a capital letter, contains no numbers, and is not more than 15 letters long.")
 }, 500))
 /*function checkUserName(event) {
     const userNameValue = event.target.value
@@ -24,33 +24,6 @@ userNameInput.addEventListener("input", debounce(function (event) {
   }
 }*/
 
-
-//Password
-
-const passWord = document.createElement("input")
-passWord.id = "passWord"
-passWord.type = "password"
-passWord.placeholder = "Enter password"
-document.getElementById("forms").appendChild(passWord)
-
-const passWordInput = document.getElementById("passWord")
-passWordInput.addEventListener("blur", debounce(function (event) {
-    const passWordValue = event.target.value
-    const regex = /^(?=.*[!@#$%^&*()-+])[a-zA-Z0-9!@#$%^&*()-+]{8,15}$/
-    validateInput(passWordValue, regex, "Invalid password. Ensure it contains at least 8 characters,is not more than 15 characters long and includes at least one special char.")
-}, 500))
-/*function checkPassword(event) {
-   const passWordValue = event.target.value
-   const regex = /^(?=.*[!@#$%^&*()-+])[a-zA-Z0-9!@#$%^&*()-+]{8,15}$/
- if (passWordValue === "") {
-   alert("Please enter your password")
- } else if (!regex.test(passWordValue)) {
-   alert("Invalid password. Ensure it contains at least 8 characters,is not more than 15 characters long and includes at least one special char.")
- } else {
-   alert("Welcome")
- } 
-}*/
-
 //Email
 
 const emailAddress = document.createElement("input")
@@ -61,9 +34,9 @@ document.getElementById("forms").appendChild(emailAddress)
 
 const emailAddressInput = document.getElementById("emailAddress")
 emailAddressInput.addEventListener("blur", debounce(function (event) {
-    const emailAddressValue = event.target.value
-    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    validateInput(emailAddressValue, regex, "Invalid email address")
+  const emailAddressValue = event.target.value
+  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  validateInput(event.target, regex, "Invalid email address")
 }, 500))
 /*function checkEmail(event) {
    const emailAddressValue = event.target.value
@@ -78,24 +51,68 @@ emailAddressInput.addEventListener("blur", debounce(function (event) {
 }*/
 
 
+//Password
+
+const passWord = document.createElement("input")
+passWord.id = "passWord"
+passWord.type = "password"
+passWord.placeholder = "Enter password"
+document.getElementById("forms").appendChild(passWord)
+
+const passWordInput = document.getElementById("passWord")
+passWordInput.addEventListener("blur", debounce(function (event) {
+  const passWordValue = event.target.value
+  const regex = /^(?=.*[!@#$%^&*()-+])[a-zA-Z0-9!@#$%^&*()-+]{8,15}$/
+  validateInput(event.target, regex, "Invalid password. Ensure it contains at least 8 characters,is not more than 15 characters long and includes at least one special char.")
+}, 500))
+/*function checkPassword(event) {
+   const passWordValue = event.target.value
+   const regex = /^(?=.*[!@#$%^&*()-+])[a-zA-Z0-9!@#$%^&*()-+]{8,15}$/
+ if (passWordValue === "") {
+   alert("Please enter your password")
+ } else if (!regex.test(passWordValue)) {
+   alert("Invalid password. Ensure it contains at least 8 characters,is not more than 15 characters long and includes at least one special char.")
+ } else {
+   alert("Welcome")
+ } 
+}*/
+
+
+
+
 //Universal functions
 
-function validateInput(inputValue, regex, errorMessage) {
-    if (!regex.test(inputValue)) {
-
-        document.getElementById("errors").textContent = errorMessage
-
-    } else {
-        document.getElementById("errors").textContent = ""
-    }
+function validateInput(inputElement, regex, errorMessage) {
+  if (!regex.test(inputElement.value)) {
+    document.getElementById("errors").textContent = errorMessage;
+    inputElement.style.borderColor = "red";
+    return errorMessage
+  } else {
+    document.getElementById("errors").textContent = "";
+    inputElement.style.borderColor = "green";
+    return ""
+  }
 }
 
 function debounce(func, delay) {
-    let debounceTimer;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => func.apply(context, args), delay);
-    };
+  let debounceTimer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
 }
+
+document.getElementById("check").addEventListener("click", function () {
+  let isValid = true
+
+  const userNameRegex = /^[A-Z][a-z]{0,14}$/
+  const passwordRegex = /^(?=.*[!@#$%^&*()-+])[a-zA-Z0-9!@#$%^&*()-+]{8,15}$/
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  validateInput(userNameInput, userNameRegex, "Invalid username.")
+  validateInput(passWordInput, passwordRegex, "Invalid password.")
+  validateInput(emailAddressInput, emailRegex, "Invalid email address.")
+
+})
